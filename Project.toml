@@ -3,8 +3,17 @@ uuid = "4ba9dd0f-9419-4edc-b963-b8b02e27d02f"
 authors = ["aTrotier <a.trotier@gmail.com> and contributors"]
 version = "0.0.1"
 
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+MRICoilSensitivities = "c57eb701-aafc-44a2-a53c-128049758959"
+MRIFiles = "5a6f062f-bf45-497d-b654-ad17aae2a530"
+MRIReco = "bdf86e05-2d2b-5731-a332-f3fe1f9e047f"
+NIfTI = "a3a9e032-41b5-5fc4-967a-a6b7a19844d3"
+QuantitativeMRI = "659767e3-31a7-4dc1-8563-6e03f484b231"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+
 [compat]
-julia = "1.9"
+julia = "1.10"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
