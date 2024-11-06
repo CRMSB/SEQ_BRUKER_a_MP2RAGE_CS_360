@@ -6,9 +6,9 @@ DocMeta.setdocmeta!(SEQ_BRUKER_a_MP2RAGE_CS_360, :DocTestSetup, :(using SEQ_BRUK
 makedocs(;
     modules=[SEQ_BRUKER_a_MP2RAGE_CS_360],
     authors="aTrotier <a.trotier@gmail.com> and contributors",
-    sitename="SEQ_BRUKER_a_MP2RAGE_CS_360.jl",
+    sitename="SEQ_BRUKER_a_MP2RAGE_CS_360",
     format=Documenter.HTML(;
-        canonical="https://aTrotier.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360.jl",
+        canonical="https://CRMSB.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360",
         edit_link="main",
         assets=String[],
     ),
@@ -18,6 +18,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/aTrotier/SEQ_BRUKER_a_MP2RAGE_CS_360.jl",
+    repo="github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360",
     devbranch="main",
 )
