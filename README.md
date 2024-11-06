@@ -1,10 +1,8 @@
 # SEQ_BRUKER_a_MP2RAGE_CS_360
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://CRMSB.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360/stable/)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://CRMSB.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360/dev/)
-[![Build Status](https://github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360/actions/workflows/CI.yml?query=branch%3Amain)
-
-
+| **Documentation**         | **Paper**                   | **Build Status** |
+|:------------------------- |:--------------------------- | :--------------------------- |
+| [![][docs-img]][docs-url] | [![][paper-img]][paper-url] | [![Build Status](https://github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360/actions/workflows/CI.yml?query=branch%3Amain) |
 
 
 
@@ -15,9 +13,7 @@ Rawdata for tests are available here : https://zenodo.org/records/14046657
 
 ---
 
-| **Documentation**         | **Paper**                   |
-|:------------------------- |:--------------------------- |
-| [![][docs-img]][docs-url] | [![][paper-img]][paper-url] |
+
 
 
 
@@ -119,8 +115,8 @@ You can install the package in any project with the following command :
 - launch julia with the command `julia`
 - enter the Julia package manager by typing `]` in the REPL. (the REPL should turn in blue)
 - if you want to activate an environment, type : `activate .` (otherwise the package will be installed in the global environment)
-- In order to add our unregistered package, type `add https://github.com/CRMSB/SEQ_BRUKER_A_MP2RAGE_CS_360`
-- if you want to use the package : `using SEQ_BRUKER_A_MP2RAGE_CS_360`
+- In order to add our unregistered package, type `add https://github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360`
+- if you want to use the package : `using SEQ_BRUKER_a_MP2RAGE_CS_360`
 
 ## How to use the package
 

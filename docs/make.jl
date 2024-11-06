@@ -18,6 +18,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/CRMSB/SEQ_BRUKER_A_MP2RAGE_CS_360",
+    repo="github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360",
     devbranch="main",
 )
