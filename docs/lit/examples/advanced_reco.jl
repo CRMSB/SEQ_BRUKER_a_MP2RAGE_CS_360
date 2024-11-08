@@ -22,13 +22,10 @@ using SEQ_BRUKER_a_MP2RAGE_CS_360
 using CairoMakie # plotting
 
 # ## Download the datasets
-  artifact_toml = "../../../../Artifacts.toml"
-  _hash = artifact_hash("MP2RAGE_data", artifact_toml)
-  if ~isnothing(_hash)
-    datadir = artifact_path(_hash)
-  else
-    datadir = artifact_path(artifact_hash("MP2RAGE_data",find_artifacts_toml(".")))
-  end
+artifact_toml = "../../../../Artifacts.toml"
+_hash = artifact_hash("MP2RAGE_data", artifact_toml)
+
+datadir = artifact_path(_hash)
 @info "The test data is located at $datadir."
 
 # If you want to perform your own reconstruction, you can change the following line in order to point to another a bruker dataset
