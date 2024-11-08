@@ -1,5 +1,7 @@
 using SEQ_BRUKER_a_MP2RAGE_CS_360
-using Documenter
+using Documenter, Literate
+
+include("generate_lit.jl")
 
 DocMeta.setdocmeta!(SEQ_BRUKER_a_MP2RAGE_CS_360, :DocTestSetup, :(using SEQ_BRUKER_a_MP2RAGE_CS_360); recursive=true)
 
@@ -14,6 +16,8 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Examples" =>["generated/examples/simple_reco.md",
+                        "generated/examples/advanced_reco.md"],
     ],
 )
 

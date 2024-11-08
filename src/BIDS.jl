@@ -51,14 +51,14 @@ function write_bids_MP2RAGE(d::Dict,subname::AbstractString,folder="")
               "_UNIT1",
               "_T1map"]
 
-  data_ = [ abs.(d["im_reco"][:,:,:,1,1,:]),
-            angle.(d["im_reco"][:,:,:,1,1,:]),
-            d["im_reco"][:,:,:,1,1,:],
-            abs.(d["im_reco"][:,:,:,2,1,:]),
-            angle.(d["im_reco"][:,:,:,2,1,:]),
-            d["im_reco"][:,:,:,2,1,:],
+  data_ = [ abs.(d["im_reco"][:,:,:,1,:,1]),
+            angle.(d["im_reco"][:,:,:,1,:,1]),
+            d["im_reco"][:,:,:,1,:,1],
+            abs.(d["im_reco"][:,:,:,1,:,2]),
+            angle.(d["im_reco"][:,:,:,1,:,2]),
+            d["im_reco"][:,:,:,1,:,2],
             d["MP2RAGE"],
-            d["T1maps"]]
+            d["T1map"]]
 
   voxel_size = tuple(parse.(Float64,d["params_prot"]["PVM_SpatResol"])...) #mm
   for (name,data) in zip(path_type, data_)
@@ -68,8 +68,8 @@ function write_bids_MP2RAGE(d::Dict,subname::AbstractString,folder="")
 
 
   # pass parameters
-  b["ACQ_operator"] # required to read ACQ
-  MagneticField = parse(Float64,b["BF1"]) / 42.576
+  d["params_prot"]["ACQ_operator"] # required to read ACQ
+  MagneticField = parse(Float64, d["params_prot"]["BF1"]) / 42.576
   p_MP2 = d["params_MP2RAGE"]
 
   # define JSON dict
