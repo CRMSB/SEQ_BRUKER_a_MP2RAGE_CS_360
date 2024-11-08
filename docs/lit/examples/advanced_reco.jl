@@ -21,11 +21,23 @@ using LazyArtifacts # loading data
 using SEQ_BRUKER_a_MP2RAGE_CS_360
 using CairoMakie # plotting
 
-# ## Download the datasets
-artifact_toml = "../../../../Artifacts.toml"
-_hash = artifact_hash("MP2RAGE_data", artifact_toml)
+artifact_data = """
+[MP2RAGE_data]
+git-tree-sha1 = "04cd4c29bb9e2aeb5384fbc70a9af0e1a37ca369"
+lazy = true
 
+    [[MP2RAGE_data.download]]
+    sha256 = "1f1b703c79db66ba6ef620651eca431cb0319d87f1eafa53826cb11a93afe4a8"
+    url = "https://zenodo.org/records/14051522/files/data.tar.gz"
+"""
+# ## Download the datasets
+temp_artifact_toml = tempname()
+open(temp_artifact_toml, "w") do file
+    write(file, artifact_data)
+end
+_hash = artifact_hash("MP2RAGE_data", temp_artifact_toml)
 datadir = artifact_path(_hash)
+
 @info "The test data is located at $datadir."
 
 # If you want to perform your own reconstruction, you can change the following line in order to point to another a bruker dataset
