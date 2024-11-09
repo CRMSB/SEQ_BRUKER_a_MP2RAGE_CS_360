@@ -1,5 +1,9 @@
 using SEQ_BRUKER_a_MP2RAGE_CS_360
 using Documenter, Literate
+using LazyArtifacts
+using Artifacts
+
+MP2_artifacts = artifact"MP2RAGE_data"
 
 include("generate_lit.jl")
 
