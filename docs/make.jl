@@ -20,6 +20,8 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Sequence and protocol" => "sequence.md",
+        "Installation and usage" => "reconstruction.md",
         "Examples" =>["generated/examples/simple_reco.md",
                         "generated/examples/advanced_reco.md"],
         "API" => "api.md"

@@ -9,12 +9,7 @@
 Rawdata for tests are available here : https://zenodo.org/records/14046657
 
 
-
-
 ---
-
-
-
 
 
 SEQ_BRUKER_a_MP2RAGE_CS_360.jl is a Julia package that implements a reconstruction for an accelerated MP2RAGE sequence for Bruker scanner (**PV360-3.5**). 
@@ -32,7 +27,15 @@ Additionally, if you use the sequence available in the MR sequence folder, pleas
 
 ## Bruker sequence and protocol
 
-The sequence, implemented for **Bruker Paravision PV-360.3.5**, and the corresponding protocol for fully-sampled  is available in the folder  `MR sequence/PV-360.3.5`. Source code is available in this private directory : https://github.com/aTrotier/a_MP2RAGE_CS_360
+The sequence, implemented for **Bruker Paravision PV-360.3.5**, and the corresponding protocol for fully-sampled  is available in the folder  `MR sequence/PV-360.3.5`. 
+
+Compressed-sensing implementation is available through the standard Bruker tab `Resolution/Encoding`. If you want to perform a compressed-sensing experiment with an acceleration of 2 like the one used here : acceleration factor = 50% and use a calibration size of 5%
+```
+##$PVM_EncCSUndersampling=50
+##$PVM_EncCSCenterRatio=5
+```
+
+Source code is available in this private directory : https://github.com/aTrotier/a_MP2RAGE_CS_360
 
 ## Julia Installation
 
@@ -137,8 +140,6 @@ subject_name = "sub_01"
 dir_path = "" # directory path where the files will be create
 write_bids_MP2RAGE(d,subject_name,dir_path)
 ```
-
-## Version
 
 
 [docs-img]: https://img.shields.io/badge/docs-latest%20release-blue.svg
