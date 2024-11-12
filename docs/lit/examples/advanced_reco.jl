@@ -47,17 +47,17 @@ d_under = reconstruction_MP2RAGE(path_bruker; mean_NR=true)
 begin
   f = Figure(size=(500,400))
   ax=Axis(f[1,1],title="TI₁ undersampled")
-  h=heatmap!(ax,abs.(d_under["im_reco"][:,:,60,1,1,1]),colormap=:grays)
+  h=heatmap!(ax,abs.(d_under["im_reco"][:,:,60,1,1]),colormap=:grays)
 
   ax=Axis(f[1,2],title="TI₁ CS")
-  h=heatmap!(ax,abs.(d["im_reco"][:,:,60,1,1,1]),colormap=:grays)
+  h=heatmap!(ax,abs.(d["im_reco"][:,:,60,1,1]),colormap=:grays)
 
 
   ax=Axis(f[2,1],title="T₁ map undersampled")
-  h=heatmap!(ax,d_under["T1map"][:,:,60,1,1],colorrange = (500,2000))
+  h=heatmap!(ax,d_under["T1map"][:,:,60,1],colorrange = (500,2000))
 
   ax=Axis(f[2,2],title="T₁ map CS")
-  h=heatmap!(ax,d["T1map"][:,:,60,1,1],colorrange = (500,2000))
+  h=heatmap!(ax,d["T1map"][:,:,60,1],colorrange = (500,2000))
 
   for ax in f.content   # hide decoration befor adding colorbar
     hidedecorations!(ax)

@@ -29,15 +29,15 @@ d = reconstruction_MP2RAGE(path_bruker; mean_NR=true)
 
 
 # the result is a dictionnary with the following fields :
-# - "im_reco" : (x,y,z,Number of Channel , Number of Repetition,TI) Complex
-# - "MP2RAGE" : (x,y,z,Number of Channel , Number of Repetition) Float
-# - "T1map" : (x,y,z,Number of Channel , Number of Repetition) Float
+# - "im_reco" : (x,y,z, Number of Repetition,TI) Complex
+# - "MP2RAGE" : (x,y,z , Number of Repetition) Float
+# - "T1map" : (x,y,z , Number of Repetition) Float
 # - "params_prot"
 # - "params_reco"
 # - "params_MP2RAGE"
 # 
-# im_reco corresponds to the TI₁ and TI₂ images in the complex format with 6 dimensions :
-# (x,y,z, Number of Channel , Number of Repetition,TI)
+# im_reco corresponds to the TI₁ and TI₂ images in the complex format with 5 dimensions :
+# (x,y,z , Number of Repetition,TI). Channels are combined during the reconstruction
 
 
 # We can check the results
@@ -45,16 +45,16 @@ d = reconstruction_MP2RAGE(path_bruker; mean_NR=true)
 begin
   f = Figure(size=(500,400))
   ax=Axis(f[1,1],title="TI₁")
-  h=heatmap!(ax,abs.(d["im_reco"][:,:,60,1,1,1]),colormap=:grays)
+  h=heatmap!(ax,abs.(d["im_reco"][:,:,60,1,1]),colormap=:grays)
 
   ax=Axis(f[1,2],title="TI₂")
-  h=heatmap!(ax,abs.(d["im_reco"][:,:,60,1,1,2]),colormap=:grays)
+  h=heatmap!(ax,abs.(d["im_reco"][:,:,60,1,2]),colormap=:grays)
 
   ax=Axis(f[2,1],title="UNIT1 / MP2RAGE")
-  h=heatmap!(ax,d["MP2RAGE"][:,:,60,1,1],colormap=:grays)
+  h=heatmap!(ax,d["MP2RAGE"][:,:,60,1],colormap=:grays)
 
   ax=Axis(f[2,2],title="T₁ map")
-  h=heatmap!(ax,d["T1map"][:,:,60,1,1],colorrange = (500,2000))
+  h=heatmap!(ax,d["T1map"][:,:,60,1],colorrange = (500,2000))
 
   for ax in f.content   # hide decoration befor adding colorbar
     hidedecorations!(ax)

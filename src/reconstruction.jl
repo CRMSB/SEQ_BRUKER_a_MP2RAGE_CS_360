@@ -12,7 +12,7 @@ Reconstructs MP2RAGE MRI data from a specified Bruker file path, returning image
 
 # Returns
 A dictionary with the following key-value pairs:
-- `"im_reco"`: Reconstructed MP2RAGE image array, permuted to match the expected order.
+- `"im_reco"`: Reconstructed MP2RAGE image array, permuted to match the expected order (x,y,z,number of Channel, Number of repetition)
 - `"MP2RAGE"`: Combined MP2RAGE image data.
 - `"T1map"`: Calculated T1 map from MP2RAGE images.
 - `"params_reco"`: Dictionary of parameters used for reconstruction.
@@ -59,12 +59,13 @@ function reconstruction_MP2RAGE(path_bruker;mean_NR::Bool = false,paramsCS=Dict(
 
   x_approx = reconstruction(acq, params).data
   if mean_NR
-    x_approx = mean(x_approx,dims=6)
+    x_approx = mean(x_approx,dims=6) # average accross repetition
   end
-  x_approx = permutedims(x_approx,(1,2,3,5,6,4))
+  x_approx = permutedims(x_approx,(1,2,3,5,6,4)) # permute to put contrast in last dimension
+  x_approx = x_approx[:,:,:,1,:,:] # remove coil dimension
 
   ## process data to extract T1 maps
-  MP2 = mp2rage_comb(x_approx[:,:,:,:,:,:])
+  MP2 = mp2rage_comb(x_approx)
 
   p = params_from_seq(b)
 

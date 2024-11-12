@@ -8,9 +8,9 @@ This function writes data from a dictionary (`d`) in BIDS (Brain Imaging Data St
 **Arguments:**
 
 * `d` (Dict): A dictionary containing the data to be written. Expected key-value pairs:
-    * `im_reco` (Array): 5D array containing the reconstructed images.
-    * `MP2RAGE` (Array): Combined MP2RAGE image data.
-    * `T1map` (Array): Calculated T1 map from MP2RAGE images.
+    * `im_reco` (Array): 5D array containing the reconstructed images (x,y,z,NR,TI)
+    * `MP2RAGE` (Array): Combined MP2RAGE image data. (x,y,z,NR)
+    * `T1map` (Array): Calculated T1 map from MP2RAGE images. (x,y,z,NR)
     * `params_prot` (Dict): Protocol parameters extracted from the Bruker file.
     * `params_MP2RAGE` (Struct): Dictionary containing MP2RAGE specific parameters.
 
@@ -52,12 +52,12 @@ function write_bids_MP2RAGE(d::Dict,subname::AbstractString,folder="")
               "_UNIT1",
               "_T1map"]
 
-  data_ = [ abs.(d["im_reco"][:,:,:,1,:,1]),
-            angle.(d["im_reco"][:,:,:,1,:,1]),
-            d["im_reco"][:,:,:,1,:,1],
-            abs.(d["im_reco"][:,:,:,1,:,2]),
-            angle.(d["im_reco"][:,:,:,1,:,2]),
-            d["im_reco"][:,:,:,1,:,2],
+  data_ = [ abs.(d["im_reco"][:,:,:,:,1]),
+            angle.(d["im_reco"][:,:,:,:,1]),
+            d["im_reco"][:,:,:,:,1],
+            abs.(d["im_reco"][:,:,:,:,2]),
+            angle.(d["im_reco"][:,:,:,:,2]),
+            d["im_reco"][:,:,:,:,2],
             d["MP2RAGE"],
             d["T1map"]]
 
