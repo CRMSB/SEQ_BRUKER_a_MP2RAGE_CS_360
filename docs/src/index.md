@@ -16,9 +16,6 @@ If you use this package please acknowledge us by citing : https://doi.org/10.100
 Additionally, if you use the sequence available in the MR sequence folder, please contact us to sign the sequence transfer agreement : aurelien.trotier@rmsb.u-bordeaux.fr
 
 
-
-![](./docs/src/img/fig_explain.png)
-
 [docs-img]: https://img.shields.io/badge/docs-latest%20release-blue.svg
 [docs-url]: https://crmsb.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360/dev/
 
