@@ -1,4 +1,41 @@
-export reconstruction_MP2RAGE
+export reconstruction_MP2RAGE, params_from_seq
+
+"""
+    reconstruction_MP2RAGE(path_bruker::String; mean_NR::Bool = false, paramsCS::Dict = Dict())
+
+Reconstructs MP2RAGE MRI data from a specified Bruker file path, returning images and T1 maps.
+
+# Arguments
+- `path_bruker::String`: Path to the Bruker file containing MRI acquisition data.
+- `mean_NR::Bool`: If `true`, calculates the mean of the reconstructed data accross the repetition (default: `false`).
+- `paramsCS::Dict`: Optional dictionary for customizing reconstruction parameters. These values override the default parameter dictionary (`params`).
+
+# Returns
+A dictionary with the following key-value pairs:
+- `"im_reco"`: Reconstructed MP2RAGE image array, permuted to match the expected order.
+- `"MP2RAGE"`: Combined MP2RAGE image data.
+- `"T1map"`: Calculated T1 map from MP2RAGE images.
+- `"params_reco"`: Dictionary of parameters used for reconstruction.
+- `"params_MP2RAGE"`: Sequence parameters derived from the Bruker file.
+- `"params_prot"`: Protocol parameters extracted from the Bruker file.
+- `"LUT"`: Lookup table with T1 range and associated values.
+
+# Description
+The function performs the following steps:
+1. Reads acquisition data from the Bruker file at `path_bruker`.
+2. Constructs calibration data using an ESPIRiT sensitivity map from low-resolution data.
+3. Sets reconstruction parameters, allowing for custom parameters specified in `paramsCS`.
+4. Reconstructs the MP2RAGE image data and optionally averages across repeated measurements.
+5. Permutes the resulting array dimensions for compatibility.
+6. Extracts T1 maps from MP2RAGE images and constructs a lookup table (`LUT`).
+
+# Example
+```julia
+d = reconstruction_MP2RAGE("path/to/bruker_data", mean_NR = true, paramsCS = Dict(:iterations => 5))
+println(d["T1map"])
+```
+
+"""
 
 function reconstruction_MP2RAGE(path_bruker;mean_NR::Bool = false,paramsCS=Dict())
   b = BrukerFile(path_bruker)
@@ -45,6 +82,17 @@ function reconstruction_MP2RAGE(path_bruker;mean_NR::Bool = false,paramsCS=Dict(
   return d
 end
 
+"""
+    params_from_seq(b::BrukerFile)
+
+Extracts MP2RAGE sequence parameters from a Bruker file and returns them in a `ParamsMP2RAGE` structure.
+
+# Arguments
+- `b::BrukerFile`: Bruker file containing sequence parameter information.
+
+# Returns
+A `ParamsMP2RAGE` structure containing key sequence timings and settings for MP2RAGE reconstruction.
+"""
 function params_from_seq(b::BrukerFile)
   return ParamsMP2RAGE(
       parse(Float64,b["EffectiveTI"][1]),

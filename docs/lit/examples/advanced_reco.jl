@@ -12,14 +12,12 @@ using SEQ_BRUKER_a_MP2RAGE_CS_360
 using CairoMakie # plotting
 
 # In addition we load the package internally used to perform the reconstruction
+using SEQ_BRUKER_a_MP2RAGE_CS_360.MRIReco
+using SEQ_BRUKER_a_MP2RAGE_CS_360.MRIReco.RegularizedLeastSquares
 
 
-
-# ## Loading Package
-using LazyArtifacts # loading data
-using SEQ_BRUKER_a_MP2RAGE_CS_360
-using CairoMakie # plotting
-
+# ## Download the datasets
+# if you run the literate example offline change the following line by : `MP2_artifacts = artifact"MP2RAGE_data"
 datadir = Main.MP2_artifacts
 @info "The test data is located at $datadir."
 
@@ -28,8 +26,7 @@ path_bruker = joinpath(datadir, "MP2RAGE_CS2")
 
 # ## Compressed-sensing reconstruction
 # In order to use an advanced reconstruction we will pass some parameters that will be used by the reconstruction package MRIReco.jl
-using SEQ_BRUKER_a_MP2RAGE_CS_360.MRIReco
-using SEQ_BRUKER_a_MP2RAGE_CS_360.MRIReco.RegularizedLeastSquares
+
 
 # We have to create a parameter dictionnary that will be used. If you need more information about it take a look at [MRIReco.jl](https://github.com/MagneticResonanceImaging/MRIReco.jl)
 
@@ -41,7 +38,7 @@ CS[:iterations] = 30
 
 d = reconstruction_MP2RAGE(path_bruker; mean_NR=true,paramsCS = CS)
 
-# for comparison purpose let's perform the undersampled reconstruction (without the paramCS keyword)
+# for comparison purposes let's perform the undersampled reconstruction (without the paramCS keyword)
 d_under = reconstruction_MP2RAGE(path_bruker; mean_NR=true)
 
 
@@ -56,10 +53,10 @@ begin
   h=heatmap!(ax,abs.(d["im_reco"][:,:,60,1,1,1]),colormap=:grays)
 
 
-  ax=Axis(f[2,1],title="UNIT1 undersampled")
+  ax=Axis(f[2,1],title="T₁ map undersampled")
   h=heatmap!(ax,d_under["T1map"][:,:,60,1,1],colorrange = (500,2000))
 
-  ax=Axis(f[2,2],title="UNIT1 CS")
+  ax=Axis(f[2,2],title="T₁ map CS")
   h=heatmap!(ax,d["T1map"][:,:,60,1,1],colorrange = (500,2000))
 
   for ax in f.content   # hide decoration befor adding colorbar

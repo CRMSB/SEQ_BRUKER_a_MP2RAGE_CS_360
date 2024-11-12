@@ -7,12 +7,13 @@ This function writes data from a dictionary (`d`) in BIDS (Brain Imaging Data St
 
 **Arguments:**
 
-* `d` (Dict): A dictionary containing the data to be written. Expected keys:
+* `d` (Dict): A dictionary containing the data to be written. Expected key-value pairs:
     * `im_reco` (Array): 5D array containing the reconstructed images.
-    * `MP2RAGE` (Array): T1 map image.
-    * `T1maps` (Array): Additional T1 map data (optional).
-    * `params_prot` (Dict): Dictionary containing acquisition parameters.
-    * `params_MP2RAGE` (Dict): Dictionary containing MP2RAGE specific parameters.
+    * `MP2RAGE` (Array): Combined MP2RAGE image data.
+    * `T1map` (Array): Calculated T1 map from MP2RAGE images.
+    * `params_prot` (Dict): Protocol parameters extracted from the Bruker file.
+    * `params_MP2RAGE` (Struct): Dictionary containing MP2RAGE specific parameters.
+
 * `subname` (AbstractString): The name of the subject.
 * `folder` (AbstractString, optional): The folder where the BIDS data will be written. Defaults to the current directory.
 

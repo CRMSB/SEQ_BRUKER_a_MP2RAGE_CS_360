@@ -22,6 +22,7 @@ makedocs(;
         "Home" => "index.md",
         "Examples" =>["generated/examples/simple_reco.md",
                         "generated/examples/advanced_reco.md"],
+        "API" => "api.md"
     ],
 )
 

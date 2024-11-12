@@ -3,7 +3,7 @@ export RawAcquisitionData_MP2RAGE
 """
     RawAcquisitionData_MP2RAGE(b::BrukerFile)
 
-Convert a Bruker dataset acquired with the a_MP2RAGE_CS_360 sequence into a 
+Convert a Bruker dataset acquired with the a\\_MP2RAGE\\_CS\\_360 sequence into a 
 `RawAcquisitionData` object compatible with the MRIReco functions.
 
 Input : 
