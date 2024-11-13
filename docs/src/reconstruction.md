@@ -1,5 +1,7 @@
 
-# Package Installation
+# Installation and usage
+
+## Package Installation
 
 You can install the package in any project with the following command :
 
@@ -10,7 +12,7 @@ You can install the package in any project with the following command :
 - if you want to use the package in your script just add the following line : `using SEQ_BRUKER_a_MP2RAGE_CS_360`
 
 
-# How to use the package
+## How to use the package
 
 Follow the example in the [documentation](https://crmsb.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360/dev/generated/examples/simple_reco/) 
 
