@@ -11,5 +11,9 @@
     "Units": "arbitrary",
     "NumberShots": 128,
     "RepetitionTimeExcitation": 7.0,
-    "MagneticFieldStrength": 7.054130398496876
+    "MagneticFieldStrength": 7.054130398496876,
+    "GeneratedBy": {
+        "Version": "nothing",
+        "Name": null
+    }
 }
