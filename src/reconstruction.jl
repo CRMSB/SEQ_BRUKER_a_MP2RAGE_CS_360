@@ -58,6 +58,7 @@ function reconstruction_MP2RAGE(path_bruker;mean_NR::Bool = false,paramsCS=Dict(
   params = merge(params,paramsCS)
 
   x_approx = reconstruction(acq, params).data
+  
   if mean_NR
     x_approx = mean(x_approx,dims=6) # average accross repetition
   end

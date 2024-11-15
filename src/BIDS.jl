@@ -74,6 +74,11 @@ function write_bids_MP2RAGE(d::Dict,subname::AbstractString,folder="")
   p_MP2 = d["params_MP2RAGE"]
 
   # define JSON dict
+  proj = Pkg.project()
+  gen_dict = Dict{Any,Any}()
+  gen_dict["Name"] = proj.name
+  gen_dict["Version"] = string(proj.version)
+
   JSON_dict = Dict{Any,Any}()
   JSON_dict["InversonTime"]= [p_MP2.TI₁,p_MP2.TI₂] #s
   JSON_dict["RepetitionTimeExcitation"]= p_MP2.TR
@@ -82,10 +87,19 @@ function write_bids_MP2RAGE(d::Dict,subname::AbstractString,folder="")
   JSON_dict["FlipAngle"]= [p_MP2.α₁,p_MP2.α₂]
   JSON_dict["MagneticFieldStrength"] = MagneticField
   JSON_dict["Units"] = "arbitrary"
+  JSON_dict["GeneratedBy"]=gen_dict
+
 
   # Write the dictionary to a JSON file
   open(joinpath(folder,subname,"MP2RAGE.json"), "w") do f
     JSON.print(f, JSON_dict, 4)  # Indent 4 spaces for readability
   end
+
+  # Write dataset description
+
+
+  JSON_dict = Dict{Any,Any}()
+  JSON_dict["generatedBy"] = proj.name
+  JSON_dict["version"] = proj.version
 
 end
