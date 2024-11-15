@@ -4,9 +4,10 @@ using LazyArtifacts
 using SEQ_BRUKER_a_MP2RAGE_CS_360.NIfTI
 using SEQ_BRUKER_a_MP2RAGE_CS_360.JSON
 
+const datadir = joinpath(artifact"MP2RAGE_data")
+@info "The test data is located at $datadir."
+
 @testset "SEQ_BRUKER_a_MP2RAGE_CS_360.jl" begin
-    const datadir = joinpath(artifact"MP2RAGE_data")
-    @info "The test data is located at $datadir."
 
     path_bruker = joinpath(datadir, "MP2RAGE_FULLY")
     d = reconstruction_MP2RAGE(path_bruker; mean_NR=true)
