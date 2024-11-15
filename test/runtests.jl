@@ -5,7 +5,7 @@ using SEQ_BRUKER_a_MP2RAGE_CS_360.NIfTI
 using SEQ_BRUKER_a_MP2RAGE_CS_360.JSON
 
 @testset "SEQ_BRUKER_a_MP2RAGE_CS_360.jl" begin
-    datadir = artifact"MP2RAGE_data"
+    const datadir = joinpath(artifact"MP2RAGE_data")
     @info "The test data is located at $datadir."
 
     path_bruker = joinpath(datadir, "MP2RAGE_FULLY")
