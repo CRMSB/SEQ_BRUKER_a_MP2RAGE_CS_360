@@ -5,7 +5,10 @@ using SEQ_BRUKER_a_MP2RAGE_CS_360.NIfTI
 using SEQ_BRUKER_a_MP2RAGE_CS_360.JSON
 using Pkg
 
-const datadir = joinpath(artifact"MP2RAGE_data")
+toml = Artifacts.find_artifacts_toml(@__DIR__)
+
+
+const datadir = Pkg.Artifacts.ensure_artifact_installed("MP2RAGE_data", toml)
 @info "The test data is located at $datadir."
 
 @testset "SEQ_BRUKER_a_MP2RAGE_CS_360.jl" begin
