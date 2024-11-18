@@ -4,6 +4,7 @@ authors = ["aTrotier <a.trotier@gmail.com> and contributors"]
 version = "0.0.1"
 
 [deps]
+Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 MRICoilSensitivities = "c57eb701-aafc-44a2-a53c-128049758959"
 MRIFiles = "5a6f062f-bf45-497d-b654-ad17aae2a530"
@@ -25,8 +26,8 @@ Statistics = "1.10"
 julia = "1.10"
 
 [extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 LazyArtifacts = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test","LazyArtifacts"]
+test = ["Test", "LazyArtifacts"]

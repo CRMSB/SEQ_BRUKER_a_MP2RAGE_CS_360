@@ -4,6 +4,7 @@ using LazyArtifacts
 using SEQ_BRUKER_a_MP2RAGE_CS_360.NIfTI
 using SEQ_BRUKER_a_MP2RAGE_CS_360.JSON
 using Pkg
+using Artifacts
 
 toml = Artifacts.find_artifacts_toml(@__DIR__)
 
