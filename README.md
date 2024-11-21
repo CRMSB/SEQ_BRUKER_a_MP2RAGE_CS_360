@@ -37,8 +37,11 @@ Compressed-sensing implementation is available through the standard Bruker tab `
 
 Source code is available in this private directory : https://github.com/aTrotier/a_MP2RAGE_CS_360
 
-## Julia Installation
+## Julia
 
+A good ressource to learn how to use Julia can be found here : [https://modernjuliaworkflows.org/](https://modernjuliaworkflows.org/) especially [this part](https://modernjuliaworkflows.org/writing/)
+
+**Installation**
 To use the code, we recommend downloading Julia version 1.10 with `juliaup`.
 
 <details>
