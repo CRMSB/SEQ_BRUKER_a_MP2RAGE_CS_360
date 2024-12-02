@@ -1,6 +1,6 @@
 # Sequence and protocols
 
-The sequence, implemented for **Bruker Paravision PV-360.3.5**, and the corresponding protocol for fully-sampled  is available in the folder  `MR sequence/PV-360.3.5`. 
+The sequence, implemented for **Bruker Paravision PV-360: 3.5 & 3.6**, and the corresponding protocol for fully-sampled  is available in the folder  `MR sequence`. 
 
 ## Enable compressed-sensing acquisition
 
