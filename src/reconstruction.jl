@@ -9,6 +9,7 @@ Reconstructs MP2RAGE MRI data from a specified Bruker file path, returning image
 - `path_bruker::String`: Path to the Bruker file containing MRI acquisition data.
 - `mean_NR::Bool`: If `true`, calculates the mean of the reconstructed data accross the repetition (default: `false`).
 - `paramsCS::Dict`: Optional dictionary for customizing reconstruction parameters. These values override the default parameter dictionary (`params`).
+- `slab_correction::Bool`: If `true`, applies slab correction to the T1 map reconstruction (default: `false`).
 
 # Returns
 A dictionary with the following key-value pairs:
@@ -37,7 +38,7 @@ println(d["T1map"])
 
 """
 
-function reconstruction_MP2RAGE(path_bruker;mean_NR::Bool = false,paramsCS=Dict())
+function reconstruction_MP2RAGE(path_bruker;mean_NR::Bool = false, paramsCS=Dict(), slab_correction::Bool = false)
   b = BrukerFile(path_bruker)
   raw = RawAcquisitionData_MP2RAGE(b)
   acq = AcquisitionData(raw,OffsetBruker=true)
@@ -69,9 +70,26 @@ function reconstruction_MP2RAGE(path_bruker;mean_NR::Bool = false,paramsCS=Dict(
   MP2 = mp2rage_comb(x_approx)
 
   p = params_from_seq(b)
+  if slab_correction
+    @info "Slab correction activated"
+    angle_profile = extract_slab_profile(b)
 
-  T1,range_T1,LUT = mp2rage_T1maps(MP2,p)
+    p_corr=deepcopy(p)
+    T1 = similar(MP2)
+    LUT = []
+    range_T1 = []
+    for i=1:size(MP2,3)
+      p_corr.α₁ = angle_profile[i]
+      p_corr.α₂ = angle_profile[i] ./ p.α₁ .* p.α₂
 
+      T1[:,:,i,:],range_T1_tmp,LUT_tmp = SEQ_BRUKER_a_MP2RAGE_CS_360.mp2rage_T1maps(MP2[:,:,i,:],p_corr)
+      push!(LUT,LUT_tmp)
+      push!(range_T1,range_T1_tmp)
+    end
+    MP2,_ = QuantitativeMRI.T1maps_mp2rage(T1,p) 
+  else
+    T1,range_T1,LUT = mp2rage_T1maps(MP2,p)
+  end
   d = Dict{Any,Any}()
   d["im_reco"] = x_approx
   d["MP2RAGE"] = MP2
