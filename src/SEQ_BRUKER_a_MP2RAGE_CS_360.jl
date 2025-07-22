@@ -13,6 +13,6 @@ using Pkg
 # Write your package code here.
 include("bruker_sequence.jl")
 include("reconstruction.jl")
+include("slab_correction.jl")
 include("BIDS.jl")
-
 end

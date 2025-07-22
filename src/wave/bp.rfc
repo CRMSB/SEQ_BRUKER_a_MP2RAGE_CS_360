@@ -1,0 +1,23 @@
+##TITLE= /d/exp/stan/nmr/lists/wave/bp
+##JCAMP-DX= 5.00 $$ BRUKER JCAMP library (alpha version)
+##ORIGIN= BRUKER Medical GMBH
+##DATA TYPE= Shape Data
+##OWNER= <tgn>
+##DATE= 98/6/30
+##TIME= 11:38:19
+##MINX= 1.000000e+02
+##MAXX= 1.000000e+02
+##MINY= 0.000000e+00
+##MAXY= 0.000000e+00
+##$SHAPE_EXMODE= Universal
+##$SHAPE_TOTROT= 180.0e+00
+##$SHAPE_BWFAC= 0.800000e+00
+##$SHAPE_INTEGFAC= 1.000000e+00
+##$SHAPE_REPHFAC=0
+##$SHAPE_TYPE=Refocussing
+##$SHAPE_MODE= 0
+##NPOINTS= 2
+##XYPOINTS= (XY..XY)
+1.000000e+02, 0.000000e+00
+1.000000e+02, 0.000000e+00
+##END=
