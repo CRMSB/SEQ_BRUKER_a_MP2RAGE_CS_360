@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Slab correction · SEQ_BRUKER_a_MP2RAGE_CS_360.jl</title><meta name="title" content="Slab correction · SEQ_BRUKER_a_MP2RAGE_CS_360.jl"/><meta property="og:title" content="Slab correction · SEQ_BRUKER_a_MP2RAGE_CS_360.jl"/><meta property="twitter:title" content="Slab correction · SEQ_BRUKER_a_MP2RAGE_CS_360.jl"/><meta name="description" content="Documentation for SEQ_BRUKER_a_MP2RAGE_CS_360.jl."/><meta property="og:description" content="Documentation for SEQ_BRUKER_a_MP2RAGE_CS_360.jl."/><meta property="twitter:description" content="Documentation for SEQ_BRUKER_a_MP2RAGE_CS_360.jl."/><meta property="og:url" content="https://CRMSB.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360.jl/generated/examples/example_slab_correction/"/><meta property="twitter:url" content="https://CRMSB.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360.jl/generated/examples/example_slab_correction/"/><link rel="canonical" href="https://CRMSB.github.io/SEQ_BRUKER_a_MP2RAGE_CS_360.jl/generated/examples/example_slab_correction/"/><script data-outdated-warner src="../../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../../assets/documenter.js"></script><script src="../../../search_index.js"></script><script src="../../../siteinfo.js"></script><script src="../../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../../">SEQ_BRUKER_a_MP2RAGE_CS_360.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../../">Home</a></li><li><a class="tocitem" href="../../../sequence/">Sequence and protocol</a></li><li><a class="tocitem" href="../../../reconstruction/">Installation and usage</a></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../simple_reco/">Simple reconstruction</a></li><li><a class="tocitem" href="../advanced_reco/">Compressed-sensing reconstruction</a></li><li class="is-active"><a class="tocitem" href>Slab correction</a><ul class="internal"><li><a class="tocitem" href="#Description"><span>Description</span></a></li><li><a class="tocitem" href="#Loading-Package"><span>Loading Package</span></a></li><li><a class="tocitem" href="#Download-the-datasets"><span>Download the datasets</span></a></li><li><a class="tocitem" href="#Perform-the-standard-reconstruction"><span>Perform the standard reconstruction</span></a></li><li><a class="tocitem" href="#Artefact-explanation-:-slab-excitation-profile"><span>Artefact explanation : slab excitation profile</span></a></li><li><a class="tocitem" href="#Correction-of-the-slab-profile"><span>Correction of the slab profile</span></a></li></ul></li></ul></li><li><a class="tocitem" href="../../../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Slab correction</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Slab correction</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/CRMSB/SEQ_BRUKER_a_MP2RAGE_CS_360/blob/main/docs/lit/examples/example_slab_correction.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="03-slab-correction"><a class="docs-heading-anchor" href="#03-slab-correction">Slab correction</a><a id="03-slab-correction-1"></a><a class="docs-heading-anchor-permalink" href="#03-slab-correction" title="Permalink"></a></h1><h2 id="Description"><a class="docs-heading-anchor" href="#Description">Description</a><a id="Description-1"></a><a class="docs-heading-anchor-permalink" href="#Description" title="Permalink"></a></h2><p>This example describes how to correct the slab profile excitation produced by a non ideal excitation RF pulse</p><h2 id="Loading-Package"><a class="docs-heading-anchor" href="#Loading-Package">Loading Package</a><a id="Loading-Package-1"></a><a class="docs-heading-anchor-permalink" href="#Loading-Package" title="Permalink"></a></h2><pre><code class="language-julia hljs">using LazyArtifacts # loading data
+using SEQ_BRUKER_a_MP2RAGE_CS_360
+using CairoMakie # plotting</code></pre><h2 id="Download-the-datasets"><a class="docs-heading-anchor" href="#Download-the-datasets">Download the datasets</a><a id="Download-the-datasets-1"></a><a class="docs-heading-anchor-permalink" href="#Download-the-datasets" title="Permalink"></a></h2><p>if you run the literate example offline run the following line by : `MP2<em>artifacts = artifact&quot;MP2RAGE</em>data&quot;</p><pre><code class="language-julia hljs">datadir = Main.MP2_artifacts
+
+@info &quot;The test data is located at $datadir.&quot;</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi"><span class="sgr36"><span class="sgr1">[ Info: </span></span>The test data is located at /home/runner/.julia/artifacts/4636cfc72321e71ef30607c6b37dd24f9f3b57ee.</code></pre><p>If you want to perform your own reconstruction, you can change the following line in order to point to another a bruker dataset</p><pre><code class="language-julia hljs">path_sinc = joinpath(datadir, &quot;sinc10H&quot;)
+path_hermite = joinpath(datadir, &quot;hermite&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">&quot;/home/runner/.julia/artifacts/4636cfc72321e71ef30607c6b37dd24f9f3b57ee/hermite&quot;</code></pre><h2 id="Perform-the-standard-reconstruction"><a class="docs-heading-anchor" href="#Perform-the-standard-reconstruction">Perform the standard reconstruction</a><a id="Perform-the-standard-reconstruction-1"></a><a class="docs-heading-anchor-permalink" href="#Perform-the-standard-reconstruction" title="Permalink"></a></h2><p>First, let&#39;s reconstruct 2 acquisitions performs on the same animal. One with a sinc10H excitation pulse and the second with an hermite pulse</p><pre><code class="language-julia hljs">d_hermite = reconstruction_MP2RAGE(path_hermite; mean_NR=true)
+d_sinc = reconstruction_MP2RAGE(path_sinc; mean_NR=true)
+
+begin
+  sl = 48
+  f = Figure(size=(600,200))
+  ax=Axis(f[1,1],title=&quot;sinc10H&quot;)
+  h=heatmap!(ax,d_sinc[&quot;MP2RAGE&quot;][:,sl,:,1],colormap=:grays)
+  arrows2d!(ax,(48,85),(20,0),color=:red)
+
+  ax=Axis(f[1,2],title=&quot;hermite&quot;)
+  h=heatmap!(ax,d_hermite[&quot;MP2RAGE&quot;][:,sl,:,1],colormap=:grays)
+  arrows2d!(ax,(48,85),(20,0),color=:red)
+
+  ax=Axis(f[1,3],title=&quot;diff&quot;)
+  h=heatmap!(ax,(d_sinc[&quot;MP2RAGE&quot;] .- d_hermite[&quot;MP2RAGE&quot;])[:,sl,:,1],colormap=:grays,colorrange = (-0.1,0.1))
+  arrows2d!(ax,(48,85),(20,0),color=:red)
+  arrows2d!(ax,(48,15),(20,0),color=:green)
+
+  for ax in f.content   # hide decoration befor adding colorbar
+    hidedecorations!(ax)
+  end
+  Colorbar(f[1,4],h,)
+  f
+end</code></pre><img src="af786627.png" alt="Example block output"/><p>You can observe a signal homogeneity along the top to bottom axis. This is especially visible onto the difference between the two images. The pattern is visible at the top (red arrow) and at the bottom (green arrow)</p><h2 id="Artefact-explanation-:-slab-excitation-profile"><a class="docs-heading-anchor" href="#Artefact-explanation-:-slab-excitation-profile">Artefact explanation : slab excitation profile</a><a id="Artefact-explanation-:-slab-excitation-profile-1"></a><a class="docs-heading-anchor-permalink" href="#Artefact-explanation-:-slab-excitation-profile" title="Permalink"></a></h2><p>This artefact can be explained by the slab excitation profile of the RF pulse. In the next figure we will show the effective angle of excitation along the slice orientation. (corresponding to the Y axis on the previous figure).</p><pre><code class="language-julia hljs">using SEQ_BRUKER_a_MP2RAGE_CS_360.MRIFiles
+profile_sinc = extract_slab_profile(BrukerFile(path_sinc))
+profile_hermite= extract_slab_profile(BrukerFile(path_hermite))
+
+begin
+  f = Figure(size=(500,400))
+  ax=Axis(f[1,1],title=&quot;sinc10H&quot;,xlabel=&quot;partition position&quot;, ylabel=&quot;Effective angle (degrees)&quot;)
+  ax.xticks=[1,8,25,50,75,89,96]
+  lines!(ax,profile_sinc)
+  vlines!(ax,8,color=:green,linestyle=:dash)
+  vlines!(ax,96-8+1,color=:green,linestyle=:dash)
+
+  hlines!(ax,7,color=:red,linestyle=:dash)
+  ax=Axis(f[2,1],title=&quot;hermite&quot;,xlabel=&quot;partition position&quot;, ylabel=&quot;Effective angle (degrees)&quot;)
+  ax.xticks=[1,25,50,75,96]
+  lines!(ax,profile_hermite)
+  hlines!(ax,7,color=:red,linestyle=:dash)
+
+  f
+end</code></pre><img src="93cdf701.png" alt="Example block output"/><p>As you can see the sinc10H reach the expected angle of 7 degrees after 8 partitions/voxels but in the hermite case we observe a large oscillation. This is this effect that creates the differences on the MP2RAGE image.</p><h2 id="Correction-of-the-slab-profile"><a class="docs-heading-anchor" href="#Correction-of-the-slab-profile">Correction of the slab profile</a><a id="Correction-of-the-slab-profile-1"></a><a class="docs-heading-anchor-permalink" href="#Correction-of-the-slab-profile" title="Permalink"></a></h2><p>Knowing the shape of the RF pulse, we are able to correct this effect when computing the T1 maps from the MP2RAGE images. To do so, for each position along the partition, we will generate a different lookuptable with the correct effective angle and compute the T1 map for this partition. To enable the slab correction, you can pass the keyword <code>slab_correction=true</code></p><pre><code class="language-julia hljs">d_hermite_corr = reconstruction_MP2RAGE(path_hermite; mean_NR=true, slab_correction = true)
+d_sinc_corr = reconstruction_MP2RAGE(path_sinc; mean_NR=true, slab_correction = true)
+
+begin
+  T1range = (1000,2000)
+  f = Figure(size=(600,400))
+
+  ax=Axis(f[1,1],title=&quot;sinc10H&quot;)
+  h=heatmap!(ax,d_sinc[&quot;T1map&quot;][:,sl,:,1],colorrange = T1range)
+
+  ax=Axis(f[1,2],title=&quot;hermite&quot;)
+  h=heatmap!(ax,d_hermite[&quot;T1map&quot;][:,sl,:,1],colorrange = T1range)
+  arrows2d!(ax,(48,85),(20,0),color=:red)
+
+  ax=Axis(f[2,1],title=&quot;sinc10H&quot;)
+  h=heatmap!(ax,d_sinc_corr[&quot;T1map&quot;][:,sl,:,1],colorrange = T1range)
+
+  ax=Axis(f[2,2],title=&quot;hermite&quot;)
+  hT1=heatmap!(ax,d_hermite_corr[&quot;T1map&quot;][:,sl,:,1],colorrange = T1range)
+
+  ax=Axis(f[1,4],title=&quot;diff&quot;)
+  h=heatmap!(ax,d_sinc[&quot;T1map&quot;][:,sl,:,1]-d_hermite[&quot;T1map&quot;][:,sl,:,1],colormap=:grays,colorrange=(-100,100))
+
+  ax=Axis(f[2,4],title=&quot;diff corrected&quot;)
+  h=heatmap!(ax,d_sinc_corr[&quot;T1map&quot;][:,sl,:,1]-d_hermite_corr[&quot;T1map&quot;][:,sl,:,1],colormap=:grays,colorrange=(-100,100))
+
+  for ax in f.content   # hide decoration befor adding colorbar
+    hidedecorations!(ax)
+  end
+  Colorbar(f[:,3],hT1,label = &quot;T₁ [ms]&quot;, flip_vertical_label=true)
+  Colorbar(f[:,5],h,label = &quot;ΔT₁ [ms]&quot;, flip_vertical_label=true)
+
+  Label(f[1,-1], &quot;Initial&quot;, rotation = pi/2)
+  Label(f[2,-1], &quot;Corrected&quot;, rotation = pi/2)
+
+  rowsize!(f.layout,1,100)
+  rowsize!(f.layout,2,100)
+  colgap!(f.layout,1,0)
+  colsize!(f.layout,0,0)
+  f
+end</code></pre><img src="9260f8a8.png" alt="Example block output"/><p>The MP2RAGE images are also corrected during this process. They are computed from the corrected T1 map using the expected flip angles.</p><pre><code class="language-julia hljs">begin
+  T1range = (-0.5,0.5)
+  f = Figure(size=(600,400))
+
+  ax=Axis(f[1,1],title=&quot;sinc10H&quot;)
+  h=heatmap!(ax,d_sinc[&quot;MP2RAGE&quot;][:,sl,:,1],colormap=:grays,colorrange = T1range)
+
+  ax=Axis(f[1,2],title=&quot;hermite&quot;)
+  h=heatmap!(ax,d_hermite[&quot;MP2RAGE&quot;][:,sl,:,1],colormap=:grays,colorrange = T1range)
+  arrows2d!(ax,(48,85),(20,0),color=:red)
+
+  ax=Axis(f[2,1],title=&quot;sinc10H&quot;)
+  h=heatmap!(ax,d_sinc_corr[&quot;MP2RAGE&quot;][:,sl,:,1],colormap=:grays,colorrange = T1range)
+
+  ax=Axis(f[2,2],title=&quot;hermite&quot;)
+  hT1=heatmap!(ax,d_hermite_corr[&quot;MP2RAGE&quot;][:,sl,:,1],colormap=:grays,colorrange = T1range)
+
+  ax=Axis(f[1,4],title=&quot;diff&quot;)
+  h=heatmap!(ax,d_sinc[&quot;MP2RAGE&quot;][:,sl,:,1]-d_hermite[&quot;MP2RAGE&quot;][:,sl,:,1],colormap=:grays,colorrange=(-0.1,0.1))
+
+  ax=Axis(f[2,4],title=&quot;diff corrected&quot;)
+  h=heatmap!(ax,d_sinc_corr[&quot;MP2RAGE&quot;][:,sl,:,1]-d_hermite_corr[&quot;MP2RAGE&quot;][:,sl,:,1],colormap=:grays,colorrange=(-0.1,0.1))
+
+  for ax in f.content   # hide decoration befor adding colorbar
+    hidedecorations!(ax)
+  end
+  Colorbar(f[1:2,3],hT1,label = &quot;MP2RAGE [ms]&quot;, flip_vertical_label=true)
+  Colorbar(f[1:2,5],h,label = &quot;Δ MP2RAGE [ms]&quot;, flip_vertical_label=true)
+
+  Label(f[1,-1], &quot;Initial&quot;, rotation = pi/2)
+  Label(f[2,-1], &quot;Corrected&quot;, rotation = pi/2)
+
+  rowsize!(f.layout,1,100)
+  rowsize!(f.layout,2,100)
+  colgap!(f.layout,1,0)
+  colsize!(f.layout,0,0)
+  f
+end</code></pre><img src="c8e8dd45.png" alt="Example block output"/><p>Unfortunetly, the corecction can&#39;t be applied on TI1 and TI2 because proton density ρ and T₂ star and B₁- effects are not known.</p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../advanced_reco/">« Compressed-sensing reconstruction</a><a class="docs-footer-nextpage" href="../../../api/">API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.14.1 on <span class="colophon-date" title="Friday 25 July 2025 16:11">Friday 25 July 2025</span>. Using Julia version 1.11.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
