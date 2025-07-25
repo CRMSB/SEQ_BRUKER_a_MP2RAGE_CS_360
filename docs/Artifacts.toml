@@ -1,6 +1,7 @@
 [MP2RAGE_data]
-git-tree-sha1 = "04cd4c29bb9e2aeb5384fbc70a9af0e1a37ca369"
+git-tree-sha1 = "4636cfc72321e71ef30607c6b37dd24f9f3b57ee"
+lazy = true
 
     [[MP2RAGE_data.download]]
-    sha256 = "1f1b703c79db66ba6ef620651eca431cb0319d87f1eafa53826cb11a93afe4a8"
-    url = "https://zenodo.org/records/14051522/files/data.tar.gz"
+    sha256 = "e69369478601d98e6c101e9f4157ae93d2a7c8645d92920fcb1647de4594f92f"
+    url = "https://zenodo.org/records/16413108/files/data.tar.gz"
