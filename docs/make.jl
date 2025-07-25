@@ -23,7 +23,8 @@ makedocs(;
         "Sequence and protocol" => "sequence.md",
         "Installation and usage" => "reconstruction.md",
         "Examples" =>["generated/examples/simple_reco.md",
-                        "generated/examples/advanced_reco.md"],
+                        "generated/examples/advanced_reco.md",
+                        "generated/examples/example_slab_correction.md"],
         "API" => "api.md"
     ],
 )

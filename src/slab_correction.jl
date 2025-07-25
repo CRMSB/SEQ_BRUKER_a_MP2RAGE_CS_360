@@ -1,3 +1,5 @@
+export extract_slab_profile, read_RF
+
 using KomaMRI
 function read_RF(path::String)
     # Open the file in the wave folder
