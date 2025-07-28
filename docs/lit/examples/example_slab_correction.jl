@@ -4,7 +4,7 @@
 
 # ## Description
 # 
-# This example describes how to correct the slab profile excitation produced by a non ideal excitation RF pulse
+# This example describes how to correct the slab profile excitation produced by a non-ideal excitation RF pulse.
 #
 
 # ## Loading Package
@@ -13,17 +13,17 @@ using SEQ_BRUKER_a_MP2RAGE_CS_360
 using CairoMakie # plotting
 
 # ## Download the datasets
-# if you run the literate example offline run the following line by : `MP2_artifacts = artifact"MP2RAGE_data"
+# If you run the literate example offline, run the following line: `MP2_artifacts = artifact"MP2RAGE_data"`
 datadir = Main.MP2_artifacts
 
 @info "The test data is located at $datadir."
 
-# If you want to perform your own reconstruction, you can change the following line in order to point to another a bruker dataset
+# If you want to perform your own reconstruction, you can change the following line to point to another Bruker dataset.
 path_sinc = joinpath(datadir, "sinc10H")
 path_hermite = joinpath(datadir, "hermite")
 
 # ## Perform the standard reconstruction 
-# First, let's reconstruct 2 acquisitions performs on the same animal. One with a sinc10H excitation pulse and the second with an hermite pulse
+# First, let's reconstruct two acquisitions performed on the same animal: one with a sinc10H excitation pulse and the second with a hermite pulse.
 
 d_hermite = reconstruction_MP2RAGE(path_hermite; mean_NR=true)
 d_sinc = reconstruction_MP2RAGE(path_sinc; mean_NR=true)
@@ -50,13 +50,13 @@ begin
   Colorbar(f[1,4],h,)
   f
 end
-# You can observe a signal homogeneity along the top to bottom axis.
-# This is especially visible onto the difference between the two images.
-# The pattern is visible at the top (red arrow) and at the bottom (green arrow)
+# You can observe signal inhomogeneity along the top-to-bottom axis.
+# This is especially visible in the difference between the two images.
+# The pattern is visible at the top (red arrow) and at the bottom (green arrow).
 
 # ## Artefact explanation : slab excitation profile
-# This artefact can be explained by the slab excitation profile of the RF pulse.
-# In the next figure we will show the effective angle of excitation along the slice orientation. (corresponding to the Y axis on the previous figure).
+# This artifact can be explained by the slab excitation profile of the RF pulse.
+# In the next figure, we show the effective angle of excitation along the slice orientation (corresponding to the Y axis in the previous figure).
 
 using SEQ_BRUKER_a_MP2RAGE_CS_360.MRIFiles
 profile_sinc = extract_slab_profile(BrukerFile(path_sinc))
@@ -79,34 +79,40 @@ begin
   f
 end
 
-# As you can see the sinc10H reach the expected angle of 7 degrees after 8 partitions/voxels but in the hermite case we observe a large oscillation.
-# This is this effect that creates the differences on the MP2RAGE image.
+# As you can see, the sinc10H reaches the expected angle of 7 degrees after 8 partitions/voxels, but in the hermite case, we observe a large oscillation.
+# This effect creates the differences in the MP2RAGE image.
 
 # ## Correction of the slab profile
 
 # Knowing the shape of the RF pulse, we are able to correct this effect when computing the T1 maps from the MP2RAGE images.
-# To do so, for each position along the partition, we will generate a different lookuptable with the correct effective angle and compute the T1 map for this partition.
-# To enable the slab correction, you can pass the keyword `slab_correction=true`
+# To do so, for each position along the partition, we generate a different lookup table with the correct effective angle and compute the T1 map for this partition.
+# To enable slab correction, you can pass the keyword `slab_correction=true`.
 
 d_hermite_corr = reconstruction_MP2RAGE(path_hermite; mean_NR=true, slab_correction = true)
 d_sinc_corr = reconstruction_MP2RAGE(path_sinc; mean_NR=true, slab_correction = true)
 
 begin
   T1range = (1000,2000)
+  using QMRIColors
+  cmap,imClip_sinc = relaxationColorMap("T1",d_sinc["T1map"][:,sl,:,1],T1range[1],T1range[2])
+  cmap,imClip_hermite = relaxationColorMap("T1",d_hermite["T1map"][:,sl,:,1],T1range[1],T1range[2])
+  cmap,imClip_sinc_corr = relaxationColorMap("T1",d_sinc_corr["T1map"][:,sl,:,1],T1range[1],T1range[2])
+  cmap,imClip_hermite_corr = relaxationColorMap("T1",d_hermite_corr["T1map"][:,sl,:,1],T1range[1],T1range[2])
+
   f = Figure(size=(600,400))
 
   ax=Axis(f[1,1],title="sinc10H")
-  h=heatmap!(ax,d_sinc["T1map"][:,sl,:,1],colorrange = T1range)
+  h=heatmap!(ax,imClip_sinc,colorrange = T1range, colormap=cmap)
 
   ax=Axis(f[1,2],title="hermite")
-  h=heatmap!(ax,d_hermite["T1map"][:,sl,:,1],colorrange = T1range)
+  h=heatmap!(ax,imClip_hermite,colorrange = T1range, colormap=cmap)
   arrows2d!(ax,(48,85),(20,0),color=:red)
 
   ax=Axis(f[2,1],title="sinc10H")
-  h=heatmap!(ax,d_sinc_corr["T1map"][:,sl,:,1],colorrange = T1range)
+  h=heatmap!(ax,imClip_sinc_corr,colorrange = T1range, colormap=cmap)
 
   ax=Axis(f[2,2],title="hermite")
-  hT1=heatmap!(ax,d_hermite_corr["T1map"][:,sl,:,1],colorrange = T1range)
+  hT1=heatmap!(ax,imClip_hermite_corr,colorrange = T1range, colormap=cmap)
 
   ax=Axis(f[1,4],title="diff")
   h=heatmap!(ax,d_sinc["T1map"][:,sl,:,1]-d_hermite["T1map"][:,sl,:,1],colormap=:grays,colorrange=(-100,100))
@@ -171,4 +177,4 @@ begin
   f
 end
 
-# Unfortunetly, the corecction can't be applied on TI1 and TI2 because proton density ρ and T₂ star and B₁- effects are not known.
+# Unfortunately, the correction can't be applied to TI1 and TI2 because proton density ρ, T₂*, and B₁- effects are not known.
