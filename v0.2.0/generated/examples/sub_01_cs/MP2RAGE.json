@@ -1,0 +1,19 @@
+{
+    "InversonTime": [
+        800.0,
+        2284.09569919831
+    ],
+    "RepetitionTimePreparation": 5000.0,
+    "FlipAngle": [
+        7.0,
+        7.0
+    ],
+    "Units": "arbitrary",
+    "NumberShots": 128,
+    "RepetitionTimeExcitation": 7.0,
+    "MagneticFieldStrength": 7.054130398496876,
+    "GeneratedBy": {
+        "Version": "nothing",
+        "Name": null
+    }
+}
