@@ -47,8 +47,8 @@ function RawAcquisitionData_MP2RAGE(b::BrukerFile)
                                    numRep))
   end
 
-  encSteps1 = parse.(Int,b["PVM_EncGenSteps1"]).+round(Int,N[2]/2)
-  encSteps2 = parse.(Int,b["PVM_EncGenSteps2"]).+round(Int,N[3]/2)
+  encSteps1 = parse.(Int,b["PVM_EncGenSteps1"]).+floor(Int,N[2]/2)
+  encSteps2 = parse.(Int,b["PVM_EncGenSteps2"]).+floor(Int,N[3]/2)
 
   objOrd = MRIFiles.acqObjOrder(b)
   objOrd = objOrd.-minimum(objOrd)
