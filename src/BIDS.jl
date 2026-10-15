@@ -63,7 +63,11 @@ function write_bids_MP2RAGE(d::Dict,subname::AbstractString,folder="")
 
   voxel_size = tuple(parse.(Float64,d["params_prot"]["PVM_SpatResol"])...) #mm
   for (name,data) in zip(path_type, data_)
-    ni = NIVolume(Float32.(data),voxel_size=voxel_size)
+    if isreal(data)
+      ni = NIVolume(Float32.(data),voxel_size=voxel_size)
+    else
+      ni = NIVolume(data,voxel_size=voxel_size)
+    end
     niwrite(joinpath(path_anat,subname*name*".nii.gz"),ni)
   end
 
