@@ -73,5 +73,5 @@ end
 # Results can be written following most of the [qBIDS format recommandation](https://bids-specification.readthedocs.io/en/stable/appendices/qmri.html)
 
 subject_name = "sub_01_cs"
-dir_path = "" # directory path where the files will be create
+dir_path = mktempdir() # directory path where the files will be create
 write_bids_MP2RAGE(d,subject_name,dir_path)
