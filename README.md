@@ -12,7 +12,7 @@ Rawdata for tests are available here : https://zenodo.org/records/14046657
 ---
 
 
-SEQ_BRUKER_a_MP2RAGE_CS_360.jl is a Julia package that implements a reconstruction for an accelerated MP2RAGE sequence for Bruker scanner (**PV360-3.5** and **PV360-3.6**). 
+SEQ_BRUKER_a_MP2RAGE_CS_360.jl is a Julia package that implements a reconstruction for an accelerated MP2RAGE sequence for Bruker scanner (**PV360-3.5**, **PV360-3.6** and **PV360-3.7**). 
 The reconstruction is performed using MRIReco.jl 
 
 More information and examples are available in the article [![][paper-img]][paper-url] and in the  [![][docs-img]][docs-url]
@@ -27,7 +27,13 @@ Additionally, if you use the sequence available in the MR sequence folder, pleas
 
 ## Bruker sequence and protocol
 
-The sequence, implemented for **Bruker Paravision PV-360: 3.5 & 3.6**, and the corresponding protocol for fully-sampled  is available in the folder  `MR sequence`. 
+The sequence, implemented for **Bruker Paravision PV-360: 3.5, 3.6 & 3.7**, and the corresponding protocol for fully-sampled  is available in the folder  `MR sequence`. 
+
+| ParaVision | Method version | Protocol | Notes |
+|:--|:--|:--|:--|
+| PV-360.3.5 | 1.0.1 | yes | |
+| PV-360.3.6 | 1.0.1 | yes | |
+| PV-360.3.7 | 1.1.0 | no | compiled by Andrew Yung (UBC), see [`MR sequence/PV-360.3.7/README.md`](MR%20sequence/PV-360.3.7/README.md) |
 
 Compressed-sensing implementation is available through the standard Bruker tab `Resolution/Encoding`. If you want to perform a compressed-sensing experiment with an acceleration of 2 like the one used here : acceleration factor = 50% and use a calibration size of 5%
 ```
